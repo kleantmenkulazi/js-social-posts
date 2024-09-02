@@ -56,6 +56,8 @@ const posts = [
     }
 ];
 
+const likedPosts = [];
+
 const postsList = document.getElementById('container');
 
 for (let i = 0; i < posts.length; i++) {
@@ -79,13 +81,13 @@ for (let i = 0; i < posts.length; i++) {
     <div class="post__footer">
         <div class="likes js-likes">
             <div class="likes__cta">
-                <a class="like-button  js-like-button" href="#" data-postid="1">
+                <a class="like-button  js-like-button" href="#" data-postid="${posts[i].id}">
                     <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                     <span class="like-button__label">Mi Piace</span>
                 </a>
             </div>
             <div class="likes__counter">
-                Piace a <b id="like-counter-1" class="js-likes-counter">${posts[i].likes}</b> persone
+                Piace a <b id="like-counter-${posts[i].id}" class="js-likes-counter">${posts[i].likes}</b> persone
             </div>
         </div> 
     </div>            
@@ -98,6 +100,27 @@ console.log('likeButtons', likeButtons, likeButtons.length);
 for (let i = 0; i < likeButtons.length; i++) {
     likeButtons[i].addEventListener('click', function (ciccio) {
         ciccio.preventDefault();
+        if(!this.classList.contains('like-button--liked')) {
         this.classList.add('like-button--liked');
+
+        const postId = this.getAttribute('data-postid');
+
+        const counterElem = document.getElementById('like-counter-' + postId);
+        let likesCount = parseInt(counterElem.innerText);
+        likesCount++;
+        counterElem.innerHTML = likesCount;
+        likedPosts.push(postId);
+        console.log('Hai messo like ai seguenti post:', Likedposts);;
+        }
+        else {
+            this.classList.remove('like-button--liked');
+
+        const postId = this.getAttribute('data-postid');
+
+        const counterElem = document.getElementById('like-counter-' + postId);
+        let likesCount = parseInt(counterElem.innerText);
+        likesCount--;
+        counterElem.innerHTML = likesCount;
+        }
     });
 }
