@@ -92,3 +92,15 @@ for (let i = 0; i < posts.length; i++) {
 </div>
 `; 
 }
+const likeButtons = document.querySelectorAll('.js-like-button');
+console.log('likeButtons', likeButtons, likeButtons.length);
+
+for (let i = 0; i < likeButtons.length; i++) {
+    likeButtons[i].addEventListener('click', function (ciccio) {
+        console.log('ciccio', ciccio, typeof ciccio);
+
+        console.log('Cliccato Like');
+
+        ciccio.preventDefault();
+    });
+}
