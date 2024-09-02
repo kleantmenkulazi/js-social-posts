@@ -97,10 +97,7 @@ console.log('likeButtons', likeButtons, likeButtons.length);
 
 for (let i = 0; i < likeButtons.length; i++) {
     likeButtons[i].addEventListener('click', function (ciccio) {
-        console.log('ciccio', ciccio, typeof ciccio);
-
-        console.log('Cliccato Like');
-
         ciccio.preventDefault();
+        this.classList.add('like-button--liked');
     });
 }
